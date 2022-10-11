@@ -1,0 +1,72 @@
+.create{
+    padding-top: 50px;
+}
+
+.createForm{
+    position: relative;
+   
+}
+
+.addImg{
+    display: flex;
+    align-items: center;
+}
+
+.choose{
+    font-size: 25px;
+    color: rgb(96, 88, 88);
+}
+
+.createFormGroup{
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.createIcon{
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.createInput{
+    font-size: 25px;
+    border-radius: 7px;
+    padding: 20px;
+    width: 70vw;
+}
+
+.createInput:focus{
+    outline: none;
+}
+
+.createText{
+    font-size: 20px;
+    height: 5vh;
+}
+
+.createSubmit{
+    position: absolute; 
+    bottom: -100px;
+    right: 100px; 
+    color: white;
+    background-color: rgb(130, 37, 113);
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.createImg{
+    margin-left: 150px;
+    width: 70vw;
+    height: 350px;
+    border-radius: 10px;
+    object-fit: cover;
+}
