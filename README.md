@@ -16,3 +16,5 @@ A fully functional CRUD app which allows users to share recipes with one another
 * Express
 * React
 * Node.js
+
+* Unit and integration testing with Jest and Supertest
