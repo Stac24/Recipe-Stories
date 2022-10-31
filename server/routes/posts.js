@@ -1,21 +1,28 @@
 const db = require('../db')
 const express = require("express");
 const app = express();
+const {check, validationResult } = require("express-validator");
 
 
 // Create a new post
-app.post("/", (req, res) =>{
-    try {
+app.post("/", [check('title','Post title is required').not().isEmpty()
+] ,(req, res) =>{
+        const errors = validationResult(req);
+        if (!errors.isEmpty()){
+            return res.status(400).json({
+                errors: errors.array()
+            });
+        }
         const title = req.body.title;
         const des = req.body.des;
         const img = req.body.img; 
         const name = req.body.name;
         db.query('INSERT INTO posts (title, des, img, name) VALUES (?,?,?,?)', [title, des, img, name]
         );
-      res.send("Values Inserted")
-    } catch (err) {
-        console.error(err.message);
-    }
+      res.json({
+        message: "Success!"
+      })
+   
 });
  
 
@@ -51,23 +58,28 @@ app.put('/:id', (req, res) => {
         const id = req.params.id;
         db.query('UPDATE posts SET title = ?, des = ?, name = ? WHERE id = ?',[title, des, name, id]
         );
-      res.send("Updated!")
+      res.status(201)
+      res.json({
+        message: "Updated!"
+      })
     } catch (err) {
         console.error(err.message);
     }
 });
 
-// Delete a post by ID 
+
 app.delete('/:id', (req,res) => {
     const id = req.params.id;
-    db.query("DELETE FROM posts WHERE id = ?", id, (err, result) => {
-        if (err) {
+    db.query("DELETE FROM posts WHERE id = ?", id, (err,result) => {
+        if(err) {
             console.log(err)
         } else{
+            res.status(204)
             res.send(result)
         }
-    });
-});
+    })
+})
+
    
 
 module.exports = app;
